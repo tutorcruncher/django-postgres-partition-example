@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-af0q$3621d4-@4bmrg5n6+@umb164z&ql$mo6jlx3%2f+ugqw*"
+SECRET_KEY = "django-insecure-(x6h#$4!(28=kjjc1v^p&c!mo+2iv^^i0e&ue8vbrqk81!)!=0"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,8 +75,12 @@ WSGI_APPLICATION = "PartitionExample.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'partition_example',
+        'USER': 'postgres',
+        'PASSWORD': 'waffle',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
