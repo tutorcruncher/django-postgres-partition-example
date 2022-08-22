@@ -27,14 +27,19 @@ class Chicken(models.Model):
 class Action(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
     actor = models.ForeignKey(User, related_name='activity_created', on_delete=models.CASCADE)
-    verb = models.CharField(max_length=255, db_index=True)
+    verb = models.CharField(max_length=255)
     content_type = models.ForeignKey(ContentType, blank=True, null=True, on_delete=models.PROTECT)
-    object_id = models.PositiveIntegerField(blank=True, null=True, db_index=True)
+    object_id = models.PositiveIntegerField(blank=True, null=True)
     subject = GenericForeignKey()
     target = models.ForeignKey(User, related_name='activity_target', blank=True, null=True, on_delete=models.SET_NULL)
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['content_type', 'object_id', 'timestamp', 'verb']),
+        ]
 
-VERBS = {
+
+VERBS = [
     "append",
     "add",
     "put",
@@ -134,4 +139,4 @@ VERBS = {
     "run",
     "code",
     "remain",
-}
+]
