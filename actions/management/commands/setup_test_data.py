@@ -1,13 +1,11 @@
 # setup_test_data.py
 import random
 
-from django.db import transaction
 from django.core.management.base import BaseCommand
+from django.db import transaction
 
-from actions.models import User, Cat, Chicken, Dog, Mouse, Action
-from actions.factories import (
-    UserFactory, ActionFactory
-)
+from actions.factories import ActionFactory, UserFactory
+from actions.models import Action, Cat, Chicken, Dog, Mouse, User
 
 NUM_USERS = 10**4
 NUM_ACTIONS = 10**5
