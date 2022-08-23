@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('<int:weeks>/', views.index, name='index'),
 ]

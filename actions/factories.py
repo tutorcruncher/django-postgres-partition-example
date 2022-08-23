@@ -44,6 +44,8 @@ class MouseFactory(DjangoModelFactory):
 
     name = factory.Faker("first_name")
 
+def get_verb():
+    return random.choice(VERBS)
 
 class ActionFactory(DjangoModelFactory):
     class Meta:
@@ -51,8 +53,8 @@ class ActionFactory(DjangoModelFactory):
 
     timestamp = factory.fuzzy.FuzzyDateTime(start_dt=timezone.now() - dateutil.relativedelta.relativedelta(years=8))
     actor = factory.SubFactory(UserFactory)
-    verb = random.choice(VERBS)
-    subject = factory.SubFactory(random.choice([UserFactory, CatFactory, DogFactory, MouseFactory, ChickenFactory]))
+    verb = factory.LazyFunction(get_verb)
+    subject = factory.SubFactory(DogFactory)
     content_type = factory.LazyAttribute(lambda obj: ContentType.objects.get_for_model(obj.subject))
     object_id = factory.SelfAttribute('subject.id')
 
