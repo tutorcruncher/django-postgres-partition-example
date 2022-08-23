@@ -14,7 +14,8 @@
       <h1>Actions Performance Test</h1>
       <p>Below is a table of actions which occured in the last {{ weeks }} weeks. See toolbar for how long it took.</p>
       <p>Add a number to the url to change the weeks queried. If you refresh the page a bunch I think postgres does some caching so it speeds up.</p>
-      <p>Getting 1 year of actions from test data of 100,000 actions takes around 2 mins</p>
+      <p>Getting 1 year of actions from test data of 100,000 actions takes around 2 mins without partitioning</p>
+      <p>With partitioning it reduces to around 50 seconds</p>
     </div>
     <div class="col-md-auto">
       {% load django_tables2 %}
